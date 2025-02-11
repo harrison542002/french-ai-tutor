@@ -1,3 +1,8 @@
+<svelte:head>
+    <title>Learning Topics</title>
+    <description>Choose your learning topics</description>
+</svelte:head>
+
 <script>
   import CommonLayout from "../../lib/CommonLayout.svelte";
 </script>

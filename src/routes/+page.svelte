@@ -1,3 +1,8 @@
+<svelte:head>
+    <title>Welcome to Bonjour</title>
+    <description>Bonjour is where you leverage your French Skils.</description>
+</svelte:head>
+
 <script>
   import CommonLayout from "../lib/CommonLayout.svelte";
 </script>

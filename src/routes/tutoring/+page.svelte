@@ -1,3 +1,8 @@
+<svelte:head>
+    <title>Tutoring Session</title>
+    <description>Start learning now</description>
+</svelte:head>
+
 <script lang="ts">
   import { page } from "$app/stores";
   import CommonLayout from "../../lib/CommonLayout.svelte";
