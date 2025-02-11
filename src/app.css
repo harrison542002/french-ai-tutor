@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Parisienne&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-parisienne: "Parisienne", serif;
+  --color-accent: #2600ff;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
