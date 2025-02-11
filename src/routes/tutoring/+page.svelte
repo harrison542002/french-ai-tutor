@@ -57,16 +57,23 @@
       }
     }
   }
+  
+  const categories =  ["grammar", "vocabulary", "pronunciation"];
 
   $: queryParams = $page.url.searchParams;
   $: category = queryParams.get('category');
   $: {
     if(category){
-      fetchStreamedResponse(`Provide me a guideline to study the French's ${category}.`);
+      if(!categories.includes(category)){
+        category = ""
+      } else {
+        fetchStreamedResponse(`Provide me a guideline to study the French's ${category}.`);
+      }
     }
   }
   
 </script>
+
 <CommonLayout>
   <div class="w-[95%] md:w-[80%] lg:w-[50%]">
     {#if container && container.children.length === 0 && !category}
