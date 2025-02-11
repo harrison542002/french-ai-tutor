@@ -1,6 +1,6 @@
 <svelte:head>
     <title>Learning Topics</title>
-    <description>Choose your learning topics</description>
+    <meta name="description" content="Choose your learning topics">
 </svelte:head>
 
 <script>

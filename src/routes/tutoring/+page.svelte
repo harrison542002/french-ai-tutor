@@ -1,6 +1,6 @@
 <svelte:head>
     <title>Tutoring Session</title>
-    <description>Start learning now</description>
+    <meta name="description" content="Start learning now">
 </svelte:head>
 
 <script lang="ts">

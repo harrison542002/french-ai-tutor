@@ -1,6 +1,6 @@
 <svelte:head>
     <title>Welcome to Bonjour</title>
-    <description>Bonjour is where you leverage your French Skils.</description>
+    <meta name="description" content="Bonjour is where you leverage your French Skils">
 </svelte:head>
 
 <script>
