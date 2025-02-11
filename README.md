@@ -16,3 +16,6 @@ This project helps learners to be more efficiency in their learning progress. Th
 - AI: OpenAI
 
 ## Video Demonstration
+
+https://github.com/user-attachments/assets/91bafd22-703d-43dd-9691-35dabc3d791e
+
