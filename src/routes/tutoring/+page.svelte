@@ -1,6 +1,5 @@
 <script lang="ts">
   import { page } from "$app/stores";
-  import { isJson } from "$lib";
   import CommonLayout from "../../lib/CommonLayout.svelte";
   import {marked} from "marked";
   import ArrowUpCircleFill from "virtual:icons/ri/arrow-up-circle-fill";
@@ -50,9 +49,7 @@
                 }
               }
           }
-        }
-
-        
+        }  
   }
 
   const handleUserInput = (e : KeyboardEvent) => {
@@ -100,7 +97,6 @@
       }
     }
   }
-  
 </script>
 
 <CommonLayout>
@@ -108,7 +104,7 @@
     {#if container && container.children.length === 0 && !category}
         <p class="text-center py-12 text-2xl font-bold">Would you like to know anything about <span class="font-parisienne font-bold text-accent">French</span>?</p>
     {/if}
-    <div class="h-[80vh] lg:h-[68vh] overflow-y-auto mt-1 scroll-smooth content-container" bind:this={container} >
+    <div class="h-[68vh] overflow-y-auto mt-1 scroll-smooth content-container" bind:this={container} >
       
     </div>
     <form class="w-[95%] md:w-[80%] lg:w-[50%] fixed bottom-[1%] z-30 bg-white" on:submit={(e) => handleArrowClick(e)}>
