@@ -71,6 +71,21 @@
       }
     }
   }
+
+  const handleArrowClick = (e : SubmitEvent) => {
+    e.preventDefault();
+    if(container){
+        if(userInput.trim()){
+          const newUserInput = document.createElement("div");
+          newUserInput.innerHTML = `<div class="bg-gray-300 rounded-4xl p-4">${userInput}</div>`;
+          newUserInput.className = "flex justify-end mb-2"
+          container.appendChild(newUserInput);
+          newUserInput.scrollIntoView({ behavior: "smooth" });
+          fetchStreamedResponse(userInput)
+          userInput = ""
+        }
+    }
+  }
   
   const categories =  ["grammar", "vocabulary", "pronunciation"];
 
@@ -96,7 +111,7 @@
     <div class="h-[80vh] lg:h-[68vh] overflow-y-auto mt-1 scroll-smooth content-container" bind:this={container} >
       
     </div>
-    <form class="w-[95%] md:w-[80%] lg:w-[50%] fixed bottom-[1%] z-30 bg-white">
+    <form class="w-[95%] md:w-[80%] lg:w-[50%] fixed bottom-[1%] z-30 bg-white" on:submit={(e) => handleUserInput(e)}>
       <input bind:value={userInput} on:keydown={handleUserInput} type="text" placeholder="Have any questions? Type Here!" class="border block w-[100%] rounded-4xl p-4 border-gray-300 shadow-md"/>
       <button class={`rounded-full absolute right-5 top-4 `} disabled={!userInput}>
         <ArrowUpCircleFill width="25" height="25" color={!userInput ? "gray" : "black"}/>
