@@ -4,7 +4,7 @@
 
 <CommonLayout>
   <div>
-    <h1 class="text-2xl font-semibold">
+    <h1 class="text-2xl font-semibold text-center">
       What would you like to improve on French?
     </h1>
   <div class="flex flex-col items-center mt-4">
