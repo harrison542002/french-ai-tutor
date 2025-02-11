@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from "$app/stores";
+  import { isJson } from "$lib";
   import CommonLayout from "../../lib/CommonLayout.svelte";
   import {marked} from "marked";
   import ArrowUpCircleFill from "virtual:icons/ri/arrow-up-circle-fill";
@@ -9,36 +10,49 @@
 
   // Function to fetch the streamed data from the server and append to the container
   async function fetchStreamedResponse(inputText: string) {
-        const response = await fetch('/api/chat', {
+        const response : any = await fetch('/api/chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ prompt: inputText }),
-        });
-        
-        const reader = response.body?.getReader();
-        const decoder = new TextDecoder();
-        let done = false;
-        let buffer = "";
+        });         
 
-        // Create a new element (div) and append it to the container
-        const newResponseElement = document.createElement('div');
-        newResponseElement.className = "text-gray-100 p-4 rounded-4xl bg-accent mb-2";
-        container?.appendChild(newResponseElement);
+        if(response?.status === 500){
+          // Append a error warning message to user if API response is bad.
+          const errorElement = document.createElement('p');
+          errorElement.className = "text-center py-8 text-red-500 text-xl border-red-500 border mt-1 mb-2 rounded-4xl";
+          errorElement.textContent = "Something went wrong, please try again later!"
+          container?.appendChild(errorElement);
+          if(container){
+                  container.scrollTop = container.scrollHeight;
+          }
+        } else{
+          const reader = response.body?.getReader();
+          const decoder = new TextDecoder();
+          let done = false;
+          let buffer = "";
 
-        if(reader){
-            while (!done) {
-              const { value, done: readerDone } = await reader.read();
-              done = readerDone;
-              buffer += decoder.decode(value, { stream: true });
+          // Create a new element (div) and append it to the container
+          const newResponseElement = document.createElement('div');
+          newResponseElement.className = "text-gray-100 p-4 rounded-4xl bg-accent mb-2";
+          container?.appendChild(newResponseElement);
 
-              newResponseElement.innerHTML = marked.parse(buffer) as string;
-              if(container){
-                container.scrollTop = container.scrollHeight;
+          if(reader){
+              while (!done) {
+                const { value, done: readerDone } = await reader.read();
+                done = readerDone;
+                buffer += decoder.decode(value, { stream: true });
+
+                newResponseElement.innerHTML = marked.parse(buffer) as string;
+                if(container){
+                  container.scrollTop = container.scrollHeight;
+                }
               }
-            }
+          }
         }
+
+        
   }
 
   const handleUserInput = (e : KeyboardEvent) => {
